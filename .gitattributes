@@ -1,0 +1,30 @@
+# Normalize line endings
+* text=auto eol=lf
+
+# Binary files
+*.bin binary
+*.gz binary
+*.zip binary
+*.tar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+
+# Source files
+*.cpp text diff=cpp
+*.hpp text diff=cpp
+*.h text diff=cpp
+*.py text diff=python
+*.md text
+*.txt text
+*.json text
+*.cmake text
+*.in text
+
+# Scripts
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf

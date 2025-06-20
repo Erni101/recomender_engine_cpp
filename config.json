@@ -1,0 +1,25 @@
+{
+    "model_paths": {
+        "user_embeddings": "models/user_embeddings.bin",
+        "item_embeddings": "models/item_embeddings.bin"
+    },
+    "data_paths": {
+        "users": "data/users.txt",
+        "items": "data/items.txt",
+        "raw_data": "data/Magazine_Subscriptions_5.json.gz"
+    },
+    "recommendation": {
+        "top_k": 10,
+        "similarity_threshold": 0.7,
+        "embedding_dim": 64
+    },
+    "training": {
+        "factors": 64,
+        "regularization": 0.01,
+        "iterations": 20
+    },
+    "system": {
+        "log_level": "INFO",
+        "cache_size": 1000
+    }
+}
