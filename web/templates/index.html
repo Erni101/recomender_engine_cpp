@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor de Recomendaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-600 mb-2">Sistema de Recomendaciones</h1>
+            <p class="text-gray-600">Obtén recomendaciones personalizadas basadas en tus preferencias</p>
+        </header>
+
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="mb-6">
+                <label for="userId" class="block text-gray-700 font-medium mb-2">ID de Usuario</label>
+                <div class="flex">
+                    <input 
+                        type="text" 
+                        id="userId" 
+                        placeholder="Ingresa el ID de usuario"
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <button 
+                        id="getRecommendations" 
+                        class="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
+                    >
+                        Obtener Recomendaciones
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">Ejemplo: A2VY1BLSFMJ2MN</p>
+            </div>
+
+            <div id="loading" class="hidden text-center py-8">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mx-auto"></div>
+                <p class="mt-4 text-gray-600">Procesando recomendaciones...</p>
+            </div>
+
+            <div id="results" class="hidden">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Recomendaciones para <span id="resultUserId" class="text-blue-600"></span>:</h2>
+                <div id="recommendationsList" class="space-y-2">
+                    <!-- Las recomendaciones se insertarán aquí -->
+                </div>
+            </div>
+
+            <div id="error" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mt-6">
+                <p id="errorMessage"></p>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>© 2025 Motor de Recomendaciones C++</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

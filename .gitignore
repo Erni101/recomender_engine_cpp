@@ -1,22 +1,80 @@
-# Build directories
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
 build/
-bin/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# C/C++
 *.exe
+*.out
 *.o
 *.a
 *.so
 *.dll
-*.lib
 *.dylib
-
-# Prerequisites
-*.d
-
-# Compiled Object files
+*.lib
+*.obj
 *.slo
 *.lo
 *.o
-*.obj
+*.d
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files
+*.bin
+*.npy
+*.npz
+*.pkl
+*.h5
+*.hdf5
+*.db
+*.sqlite3
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Environment variables
+.env
+
+# Build directory
+build/
+bin/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Precompiled Headers
 *.gch

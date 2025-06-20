@@ -1,232 +1,336 @@
-# 🚀 Motor de Recomendaciones en C++
+# 🚀 Motor de Recomendaciones en C++ con Interfaz Web
 
-Un motor de recomendaciones de alto rendimiento implementado en C++ que utiliza embeddings para generar recomendaciones personalizadas basadas en similitud coseno.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![C++17](https://img.shields.io/badge/C++-17-blue.svg)](https://en.cppreference.com/)
+[![CMake](https://img.shields.io/badge/CMake-3.10+-064F8C.svg?logo=cmake)](https://cmake.org/)
+[![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com/)
 
-## 🛠️ Requisitos
+Un motor de recomendaciones de alto rendimiento implementado en C++ con una interfaz web en Python/Flask. Este proyecto procesa datos de reseñas de revistas de Amazon para proporcionar recomendaciones personalizadas de manera eficiente.
 
-- Compilador C++17 o superior (GCC/Clang/MSVC)
-- CMake 3.10 o superior
-- Python 3.7+ (solo para generación de datos de prueba)
-- Bibliotecas:
-  - nlohmann/json (incluida en el código fuente)
+## ✨ Características
 
-## 🚀 Instalación
-
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/tu-usuario/recomender_engine_cpp.git
-   cd recomender_engine_cpp
-   ```
-
-2. Configurar el proyecto con CMake:
-   ```bash
-   mkdir -p build && cd build
-   cmake ..
-   ```
-
-3. Compilar el proyecto:
-   ```bash
-   cmake --build .
-   ```
+- 🚀 **Motor C++** - Alto rendimiento y eficiencia
+- 🐍 **Python/Flask** - Interfaz web moderna y responsiva
+- 🔧 **CMake** - Sistema de compilación multiplataforma
+- 🔍 **Algoritmos Avanzados** - Búsqueda por similitud coseno
+- 📊 **Procesamiento de Datos** - Escalable y eficiente
+- 🎯 **Precisión** - Recomendaciones personalizadas basadas en comportamiento
+- 🛠️ **Fácil Despliegue** - Configuración sencilla y documentación completa
+- 📱 **Responsive** - Funciona en cualquier dispositivo
 
 ## 🏗️ Estructura del Proyecto
 
 ```
 recomender_engine_cpp/
-├── include/                    # Archivos de cabecera
-│   ├── recommender.hpp        # Clase principal del recomendador
-│   ├── loader.hpp             # Utilidades para carga de datos
-│   └── utils.hpp              # Utilidades matemáticas
-├── src/                       # Código fuente
-│   ├── main.cpp              # Punto de entrada
-│   ├── recommender.cpp       # Implementación del recomendador
-│   ├── loader.cpp            # Implementación de carga de datos
-│   └── utils.cpp             # Implementación de utilidades
-├── data/                      # Datos de ejemplo
-├── models/                    # Modelos pre-entrenados
-├── tests/                     # Pruebas unitarias
+├── build/                     # Archivos de compilación (no versionado)
+├── data/                      # Datos de entrada
+│   ├── Magazine_Subscriptions_5.json.gz  # Dataset de Amazon
+│   ├── users.txt              # Lista de usuarios
+│   └── items.txt              # Lista de ítems
+├── models/                    # Modelos generados (no versionado)
+│   ├── user_embeddings.bin    # Embeddings de usuarios
+│   └── item_embeddings.bin    # Embeddings de ítems
+├── web/                       # Interfaz web
+│   ├── static/               # Archivos estáticos (CSS, JS)
+│   └── templates/            # Plantillas HTML
+│       └── index.html        # Página principal
 ├── CMakeLists.txt            # Configuración de CMake
-└── config.json               # Archivo de configuración
+├── config.json               # Configuración de la aplicación
+├── process_magazine_data.py  # Procesa datos de Amazon
+├── prepare_build.py          # Prepara el entorno de compilación
+├── requirements.txt          # Dependencias de Python
+├── README.md                # Este archivo
+└── LICENSE                  # Licencia MIT
 ```
 
-## 🚀 Uso
+## 🚀 Instalación
 
-1. Ejecutar el programa con un ID de usuario:
+1. **Clonar el repositorio**
    ```bash
-   ./recommender_engine_cpp <user_id>
+   git clone https://github.com/tuusuario/recomender_engine_cpp.git
+   cd recomender_engine_cpp
    ```
 
-2. El programa mostrará las recomendaciones para el usuario especificado.
-
-## 🧠 Procesamiento de Datos
-
-### Datos de Amazon
-
-El proyecto incluye un conjunto de datos de reseñas de revistas de Amazon. Para procesar estos datos y generar los embeddings necesarios:
-
-1. Asegúrate de tener instaladas las dependencias de Python:
+2. **Configurar entorno virtual de Python**
    ```bash
+   python -m venv venv
+   source venv/bin/activate  # En Windows: .\venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-2. Ejecuta el script de procesamiento:
+3. **Procesar los datos**
    ```bash
-   python process_amazon_data.py
+   python process_magazine_data.py
    ```
 
-Este script:
-- Procesa el archivo `data/Magazine_Subscriptions_5.json.gz`
-- Entrena un modelo de factorización de matrices (ALS)
-- Genera los archivos de embeddings en la carpeta `models/`
-- Crea listas de usuarios e ítems en `data/`
+4. **Compilar el motor C++**
+   ```bash
+   mkdir -p build && cd build
+   cmake ..
+   cmake --build .
+   cd ..
+   ```
 
-### Datos de Prueba
+5. **Preparar archivos para el motor**
+   ```bash
+   python prepare_build.py
+   ```
 
-Para generar un conjunto de datos de prueba más pequeño, puedes usar:
+## 🖥️ Uso
 
-```bash
-python generate_test_data.py
-```
+1. **Iniciar el servidor web**
+   ```bash
+   python web/app.py
+   ```
+
+2. **Abrir en el navegador**
+   ```
+   http://localhost:5000
+   ```
+
+3. **Probar con usuarios de ejemplo**
+   - Los IDs de usuario se pueden encontrar en `data/users.txt`
+   - Ejemplo: `A10BWUA2MGA9BK`
+
+## 📊 Datos
+
+El proyecto utiliza el conjunto de datos [Amazon Magazine Subscriptions](https://nijianmo.github.io/amazon/index.html) que contiene reseñas de revistas de Amazon.
 
 ## 📝 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## 🤝 Contribución
+## 🛠️ Requisitos
 
-Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request.
+### Para compilación
+- **Sistemas operativos:** Windows, Linux, macOS
+- **Compilador C++17** o superior:
+  - GCC 7+
+  - Clang 5+
+  - MSVC 2017+
+- **CMake** 3.10 o superior
+- **Git** (para clonar el repositorio)
 
-## 📧 Contacto
+### Para procesamiento de datos (opcional)
+- **Python** 3.7 o superior
+- **Dependencias de Python** (instalación automática):
+  ```bash
+  pip install -r requirements.txt
+  ```
+  - numpy
+  - pandas
+  - scipy
+  - implicit
+  - tqdm
 
-Tu Nombre - [@tu_twitter](https://twitter.com/tu_twitter) - tu@email.com
+## 🚀 Instalación Rápida
 
-Enlace del proyecto: [https://github.com/tu-usuario/recomender_engine_cpp](https://github.com/tu-usuario/recomender_engine_cpp)
-│   └── utils.hpp              # Funciones de utilidad
-│
-├── src/                       # Código fuente
-│   ├── main.cpp               # Punto de entrada principal
-│   ├── recommender.cpp        # Implementación del recomendador
-│   ├── loader.cpp             # Implementación de carga de datos
-│   └── utils.cpp              # Implementación de utilidades
-│
-├── models/                    # Archivos de modelo
-│   ├── user_embeddings.bin    # Embeddings de usuarios
-│   └── item_embeddings.bin    # Embeddings de ítems
-│
-├── data/                      # Datos de entrada
-│   ├── users.txt              # Datos de usuarios
-│   └── items.txt              # Datos de ítems
-│
-├── tests/                     # Pruebas unitarias
-│   └── test_recommender.cpp   # Pruebas con Google Test
-│
-├── build/                     # Directorio de compilación
-├── CMakeLists.txt             # Configuración de CMake
-├── config.json                # Archivo de configuración
-└── generate_test_data.py      # Script para generar datos de prueba
+### Clonar el repositorio
+```bash
+git clone https://github.com/Erni101/recomender_engine_cpp.git
+cd recomender_engine_cpp
 ```
 
-## Requisitos
-
-- CMake 3.10 o superior
-- Compilador C++17 compatible (g++ 7+, clang 5+, MSVC 2017+)
-- Python 3.6+ (solo para generar datos de prueba)
-- Bibliotecas:
-  - nlohmann/json (para manejo de JSON)
-  - Google Test (para pruebas unitarias, opcional)
-
-## Instalación
-
-1. Clona el repositorio:
-   ```bash
-   git clone [url-del-repositorio]
-   cd recommender_engine_cpp
-   ```
-
-2. Instala las dependencias:
-   ```bash
-   # En Ubuntu/Debian
-   sudo apt-get install build-essential cmake
-   
-   # O usando vcpkg
-   vcpkg install nlohmann-json
-   vcpkg install gtest
-   ```
-
-3. Genera datos de prueba (opcional):
-   ```bash
-   python generate_test_data.py
-   ```
-
-## Compilación
-
+### Compilar el proyecto
 ```bash
-# Crea el directorio de compilación
-mkdir build
-cd build
+# Crear directorio de compilación
+mkdir -p build && cd build
 
-# Configura con CMake
+# Configurar con CMake
 cmake ..
 
-# O para configurar con vcpkg
-# cmake .. -DCMAKE_TOOLCHAIN_FILE=[ruta-a-vcpkg]/scripts/buildsystems/vcpkg.cmake
+# O para modo Release
+# cmake .. -DCMAKE_BUILD_TYPE=Release
 
-# Compila el proyecto
+# Compilar
 cmake --build .
 ```
 
-## Uso
-
-1. Ejecuta el programa principal:
-   ```bash
-   ./recommender_engine_cpp user_0
-   ```
-   Esto generará recomendaciones para el usuario "user_0".
-
-2. Para ejecutar las pruebas unitarias:
-   ```bash
-   ctest
-   ```
-
-## Configuración
-
-El archivo `config.json` contiene la configuración del sistema:
-- `model_paths`: Rutas a los archivos de embeddings
-- `data_paths`: Rutas a los archivos de datos de texto
-- `recommendation`: Configuración de recomendaciones (top-k, umbral de similitud)
-- `system`: Configuración del sistema (nivel de log, tamaño de caché)
-
-## Generación de Datos de Prueba
-
-El script `generate_test_data.py` genera datos de prueba aleatorios:
-- 100 usuarios con embeddings de 50 dimensiones
-- 1000 ítems con embeddings de 50 dimensiones
-- Archivos de texto con IDs de usuarios e ítems
-
-Para generar los datos:
+### Instalar dependencias de Python (opcional, solo para procesamiento de datos)
 ```bash
-python generate_test_data.py
+pip install -r requirements.txt
 ```
 
-## Estructura del Código
+## 💻 Uso
 
-- `recommender.hpp/cpp`: Clase principal que maneja las recomendaciones
-- `loader.hpp/cpp`: Utilidades para cargar y guardar embeddings
-- `utils.hpp/cpp`: Funciones de utilidad (cálculo de similitud, etc.)
-- `main.cpp`: Punto de entrada del programa
+### 1. Procesamiento de Datos
 
-## Pruebas
+#### Procesar datos de Amazon
+```bash
+# Instalar dependencias (si no se han instalado)
+pip install -r requirements.txt
 
-Las pruebas unitarias utilizan Google Test. Para compilar y ejecutar las pruebas:
+# Procesar datos
+python scripts/process_amazon_data.py
+```
+
+Este script:
+- Procesa el archivo `data/Magazine_Subscriptions_5.json.gz`
+- Entrena un modelo ALS (Alternating Least Squares)
+- Genera los archivos de embeddings en `models/`
+- Crea listas de usuarios e ítems en `data/`
+
+#### Generar datos de prueba (opcional)
+```bash
+python scripts/generate_test_data.py
+```
+
+### 2. Ejecutar el Motor de Recomendaciones
 
 ```bash
-mkdir -p build
+# Navegar al directorio de compilación
 cd build
-cmake .. -DBUILD_TESTS=ON
-make
+
+# Ejecutar con un ID de usuario
+./recommender_engine_cpp <user_id>
+
+# Ejemplo:
+# ./recommender_engine_cpp A2VY1BLSFMJ2MN
+```
+
+### 3. Ejecutar Pruebas Unitarias
+
+```bash
+cd build
 ctest --output-on-failure
 ```
 
-## Licencia
+## ⚙️ Configuración
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo LICENSE para más detalles.
+El archivo `config.json` controla el comportamiento del sistema:
+
+```json
+{
+    "model_paths": {
+        "user_embeddings": "models/user_embeddings.bin",
+        "item_embeddings": "models/item_embeddings.bin"
+    },
+    "data_paths": {
+        "users": "data/users.txt",
+        "items": "data/items.txt",
+        "raw_data": "data/Magazine_Subscriptions_5.json.gz"
+    },
+    "recommendation": {
+        "top_k": 10,                    // Número de recomendaciones a generar
+        "similarity_threshold": 0.7     // Umbral mínimo de similitud (0.0 a 1.0)
+    },
+    "training": {
+        "factors": 64,                  // Dimensión de los embeddings
+        "regularization": 0.01,         // Término de regularización
+        "iterations": 20                // Número de iteraciones de entrenamiento
+    }
+}
+```
+
+### Variables de Entorno
+
+| Variable | Descripción | Valor por defecto |
+|----------|-------------|-------------------|
+| `RECOMMENDER_DEBUG` | Nivel de depuración (0-3) | 1 |
+| `OMP_NUM_THREADS` | Número de hilos para procesamiento paralelo | Núcleos disponibles |
+
+## 🧪 Pruebas
+
+El proyecto incluye pruebas unitarias para validar el funcionamiento del motor:
+
+### Ejecutar todas las pruebas
+```bash
+cd build
+ctest --output-on-failure
+```
+
+### Ejecutar pruebas específicas
+```bash
+cd build
+./tests/recommender_tests  # Ajusta el nombre del ejecutable según tu configuración
+```
+
+### Cobertura de código (Linux/macOS)
+```bash
+mkdir -p build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DBUILD_COVERAGE=ON
+make
+test/run_tests.sh
+```
+
+## 🤝 Contribución
+
+¡Gracias por considerar contribuir a este proyecto! Sigue estos pasos para contribuir:
+
+1. 🍴 Haz un fork del repositorio
+2. 🌿 Crea una rama para tu característica:
+   ```bash
+   git checkout -b feature/nueva-funcionalidad
+   ```
+3. 💾 Guarda tus cambios con mensajes descriptivos:
+   ```bash
+   git commit -m "feat: Añadir nueva funcionalidad"
+   ```
+4. 📤 Sube tus cambios:
+   ```bash
+   git push origin feature/nueva-funcionalidad
+   ```
+5. 🔄 Abre un Pull Request
+
+### Convenciones de Commits
+
+Usamos [Conventional Commits](https://www.conventionalcommits.org/):
+- `feat:` Nueva característica
+- `fix:` Corrección de errores
+- `docs:` Cambios en la documentación
+- `style:` Formato, punto y coma, etc. (sin cambios en el código)
+- `refactor:` Cambios en el código que no corrigen errores ni añaden características
+- `perf:` Cambios que mejoran el rendimiento
+- `test:` Añadir o corregir pruebas
+- `chore:` Cambios en el proceso de construcción o herramientas auxiliares
+
+## 📚 Documentación Adicional
+
+### Estructura del Código
+
+- **`include/recommender.hpp`**: Interfaz principal del motor de recomendaciones
+- **`src/recommender.cpp`**: Implementación del algoritmo de recomendación
+- **`include/loader.hpp`, `src/loader.cpp`**: Utilidades para cargar/guardar embeddings
+- **`include/utils.hpp`, `src/utils.cpp`**: Funciones de utilidad (similitud coseno, normalización, etc.)
+- **`src/main.cpp`**: Punto de entrada de la aplicación
+
+### Generación de Datos de Prueba
+
+El script `scripts/generate_test_data.py` crea un conjunto de datos sintético:
+
+```bash
+python scripts/generate_test_data.py
+```
+
+**Características de los datos generados:**
+- 100 usuarios con embeddings de 50 dimensiones
+- 1,000 ítems con embeddings de 50 dimensiones
+- Archivos de texto con IDs de usuarios e ítems
+
+## 🛠️ Despliegue
+
+### Requisitos del Sistema
+- 4GB+ de RAM (dependiendo del tamaño del dataset)
+- 1GB+ de espacio en disco para los embeddings
+
+### Rendimiento
+- Tiempo de inferencia: < 100ms por recomendación (depende del hardware)
+- Uso de memoria: ~500MB para 10,000 usuarios/ítems
+
+## 📝 Licencia
+
+Este proyecto está bajo la [Licencia MIT](LICENSE).
+
+## 📧 Contacto
+
+- **Autor**: Ernesto
+- **GitHub**: [Erni101](https://github.com/Erni101)
+- **Email**: ejgramckovillares@gmail.com
+
+---
+
+<div align="center">
+  <p>© 2025 Ernesto Gramcko Villares. Todos los derechos reservados.</p>
+  <p>Distribuido bajo la Licencia MIT.</p>
+</div>
